@@ -28,6 +28,34 @@ app.use(cookieParser());
 app.use(serveStatic(__dirname + '/public', {'index': ['index.html', 'index.htm']}));
 
 
+// Mongo
+mongoose = require('mongoose');
+// var Schema = mongoose.Schema;
+autoIncrement = require('mongoose-auto-increment');
+var mongooseConnect = function() {
+  var options = {
+    server: {
+      socketOptions: {
+        keepAlive: 1
+      }
+    }
+  };
+  var connection = mongoose.connect(config.MONGO_URI, options);
+  autoIncrement.initialize(connection);
+};
+mongoose.Promise = global.Promise;
+mongooseConnect();
+mongoose.connection.on('error', function(err) {
+  console.log('Mongoose: ', err);
+});
+mongoose.connection.on('connect', function(err) {
+  console.log('Mongoose connected');
+});
+mongoose.connection.on('disconnected', function() {
+  mongooseConnect();
+});
+
+
 // All routes should be moved to separate file
 
 // Generate csrf token
