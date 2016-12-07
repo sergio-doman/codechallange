@@ -2,6 +2,7 @@
 var _ = require('lodash');
 var async = require('async');
 var config = require('../config');
+var mongoose = require('mongoose');
 var Form = mongoose.model('Form', require('../models/form').FormSchema);
 
 

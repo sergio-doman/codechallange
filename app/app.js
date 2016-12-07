@@ -8,6 +8,9 @@ var csrf = require('csurf');
 var bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
 var routesVersioning = require('express-routes-versioning')();
+var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
+
 var config = require('./config');
 
 var csrfProtection = csrf({ cookie: true })
@@ -28,10 +31,17 @@ app.use(session({
 app.use(cookieParser());
 app.use(serveStatic(__dirname + '/public', {'index': ['index.html', 'index.htm']}));
 
+app.use(function (err, req, res, next) {
+  if (err.code !== 'EBADCSRFTOKEN') {
+    return next(err);
+  }
+
+  // handle CSRF token errors here
+  res.status(403)
+  res.send('form tampered with')
+})
 
 // Mongo
-mongoose = require('mongoose');
-autoIncrement = require('mongoose-auto-increment');
 var mongooseConnect = function() {
   var options = {
     server: {
