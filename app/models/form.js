@@ -9,18 +9,21 @@ var FormSchema = new Schema({
   gender: {
     type: String,
     enum: ['female', 'male'],
+    required: [true, 'Gender not specified'],
     match: [/^(female|male)$/, 'Please fill a valid gender']
   },
 
   firstname: {
     type: String,
     trim: true,
+    required: [true, 'Firstname not specified'],
     match: [/^\w+$/, 'Please fill a valid firstname']
   },
 
   lastname: {
     type: String,
     trim: true,
+    required: [true, 'Lastname not specified'],
     match: [/^\w+$/, 'Please fill a valid lastname']
   },
 

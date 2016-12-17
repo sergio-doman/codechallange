@@ -13,8 +13,9 @@ var autoIncrement = require('mongoose-auto-increment');
 
 var config = require('./config');
 
-var csrfProtection = csrf({ cookie: true })
-var parseForm = bodyParser.urlencoded({ extended: false })
+var csrfProtection = csrf({ cookie: true });
+// var parseForm = bodyParser.urlencoded({ extended: false });
+// var parseJson = bodyParser.json();
 
 
 // Express
@@ -29,8 +30,8 @@ app.use(session({
 }));
 
 app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(serveStatic(__dirname + '/public', {'index': ['index.html', 'index.htm']}));
-
 app.use(function (err, req, res, next) {
   if (err.code !== 'EBADCSRFTOKEN') {
     return next(err);
@@ -62,12 +63,14 @@ mongoose.connection.on('connect', function(err) {
   console.log('Mongoose connected');
 });
 mongoose.connection.on('disconnected', function() {
-  mongooseConnect();
+  setTimeout(function () {
+    mongooseConnect();
+  }, 1000);
 });
 
 
 // Routes
-require('./routes')(app, parseForm, csrfProtection, routesVersioning);
+require('./routes')(app, csrfProtection, routesVersioning);
 
 
 // Start
