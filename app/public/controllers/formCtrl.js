@@ -9,11 +9,14 @@ angular.module('myApp.form', ['ngRoute'])
   });
 }])
 
-.controller('formCtrl', ['$scope', function($scope) {
+.controller('formCtrl', ['$scope', '$timeout', 'toastr', function($scope, $timeout, toastr) {
 
   var model = $scope.model = {
 
     form: {
+      token: "",
+      sent: false,
+      progress: false,
 
       dataDefault: {
         gender: "",
@@ -29,7 +32,18 @@ angular.module('myApp.form', ['ngRoute'])
       data: {},
 
       register: function () {
-        console.log('register !!!');
+
+        model.form.progress = true;
+        $timeout(function () {
+
+          model.form.progress = false;
+          model.form.sent = true;
+
+          // toastr.error('Error');
+          // toastr.success('Registered');
+          toastr.info('Registered');
+        }, 2000);
+
       },
 
       reset: function () {

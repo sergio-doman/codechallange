@@ -2,6 +2,7 @@
 
 angular.module('myApp', [
   'ngRoute',
+  'toastr',
   'myApp.main',
   'myApp.form'
 ]).
