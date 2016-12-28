@@ -1,25 +1,30 @@
-/* app css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+body {
+  padding-top: 0px;
+  background-color: #19934c;
+
+  font-family: ClearSans, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
 }
 
-.menu:before {
-  content: "[";
+.navbar-custom {
+  background-color: #19934c;
 }
 
-.menu:after {
-  content: "]";
+.navbar-header .navbar-brand img {
+  margin: 0;
+  width: 127px;
 }
 
-.menu > li {
-  display: inline;
+
+.navbar .navbar-header button.navbar-toggle,
+nav ul li a, nav ul li a:active,
+nav ul li a:hover {
+  font-weight: 200;
+  color: #fcfffb;
 }
 
-.menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
 }
