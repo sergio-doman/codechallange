@@ -1,5 +1,53 @@
 
-      <div class="text-center">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+      <div align="center" class="white">
+        <div class="text-center register-form">
+
+          <h1>Registration</h1>
+          <p>
+            <input type="text" ng-model="model.form.data.firstname" class="form-control" placeholder="Firstname.." title="Firstname" required >
+          </p>
+
+          <p>
+            <input type="text" ng-model="model.form.data.lastname" class="form-control" placeholder="Lastname.." title="Lastname" required >
+          </p>
+
+          <p>
+            <input type="email" ng-model="model.form.data.email" class="form-control" placeholder="Email.." title="Email" required >
+          </p>
+
+          <p>
+            <input type="text" ng-model="model.form.data.phone" class="form-control" placeholder="Phone.." title="Phone" required >
+          </p>
+
+          <p>
+            <input type="number" ng-model="model.form.data.age" class="form-control" placeholder="Age.." title="Age" min="1" max="99" required >
+          </p>
+
+          <p>
+            <input type="number" ng-model="model.form.data.zip" class="form-control" placeholder="Zip.." title="Zip" min="100" max="999" required >
+          </p>
+
+          <p>
+            <label>
+              <input type="checkbox" ng-model="model.form.data.termsAccepted">
+              Accept terms
+            </label>
+          </p>
+
+          <p>
+            <button class="btn btn-register btn-lg" ng-click="model.form.register();">
+              Register
+            </button>
+          </p>
+        </div>
+<br />
+<br />
+<br />
+<br />
+<br />
+        <div>
+          {{model.form.data}}
+        </div>
       </div>
+
+

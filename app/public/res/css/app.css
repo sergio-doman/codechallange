@@ -36,3 +36,37 @@ nav ul li a,
 .white a, .white a:focus, .white a:hover {
   color: #fff;
 }
+
+.register-form {
+  max-width: 600px;
+  background-color: #126735;
+  padding: 20px;
+}
+
+.btn.btn-register {
+  color: #fcfffb;
+  background-color: #ea5ca1;
+  background-image: linear-gradient(to bottom, #ea5ca1, #ea5ca1);
+  border-color: #f43a9c #f43a9c #f43a9c;
+}
+
+.btn.btn-register:hover {
+  color: #fcfffb;
+  background-color: #ea5ca1;
+  background-image: linear-gradient(to bottom, #ea5ca1, #ea5ca1);
+  border-color: #f43a9c #f43a9c #f43a9c;
+}
+
+.btn.btn-default {
+  color: #19934c;
+  background-color: #fcfffb;
+  background-image: linear-gradient(to bottom, #fcfffb, #fcfffb);
+  border-color: #196200 #196200 #196200;
+}
+
+.btn.btn-default:hover {
+  color: #19934c;
+  background-color: #fcfffb;
+  background-image: linear-gradient(to bottom, #fcfffb, #fcfffb);
+  border-color: #196200 #196200 #196200;
+}
