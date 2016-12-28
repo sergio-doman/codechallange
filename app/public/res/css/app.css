@@ -18,13 +18,21 @@ body {
 
 
 .navbar .navbar-header button.navbar-toggle,
-nav ul li a, nav ul li a:active,
-nav ul li a:hover {
+nav ul li a,
+.nav > li > a:focus,
+.nav > li > a:hover {
+  background-color: #19934c;
   font-weight: 200;
   color: #fcfffb;
 }
 
-.starter-template {
-  padding: 40px 15px;
-  text-align: center;
+.container {
+  padding-top: 50px;
+}
+
+.white {
+  color: #fff;
+}
+.white a, .white a:focus, .white a:hover {
+  color: #fff;
 }
