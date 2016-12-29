@@ -25,9 +25,10 @@ angular.module('myApp.form', ['ngRoute'])
         email: "",
         phone: "",
         age: "",
-        zip: "",
-        termsAccepted: false
+        zip: ""
       },
+
+      termsAccepted: false,
 
       data: {},
 
@@ -43,22 +44,35 @@ angular.module('myApp.form', ['ngRoute'])
       },
 
       register: function () {
-        // csrf-token
         model.form.progress = true;
-        $timeout(function () {
 
-          model.form.progress = false;
-          model.form.sent = true;
+        api.postRegistrationForm({
+          form: model.form.data,
+          termsAccepted: model.form.termsAccepted
+        }, model.form.token, function (err) {
 
-          // toastr.error('Error');
-          // toastr.success('Registered');
-          toastr.info('Registered');
-        }, 2000);
+          // Timeout added in test purposes only..
+          $timeout(function () {
+
+            model.form.progress = false;
+            if (err) {
+              toastr.error(err);
+            }
+            else {
+              model.form.sent = true;
+              model.form.reset();
+              toastr.info('Registered');
+            }
+
+          }, 1000);
+
+        });
 
       },
 
       reset: function () {
         model.form.data = angular.copy(model.form.dataDefault);
+        model.form.termsAccepted = false;
       }
     }
 
