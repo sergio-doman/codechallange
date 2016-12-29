@@ -9,6 +9,6 @@ angular.module('myApp.main', ['ngRoute'])
   });
 }])
 
-.controller('mainCtrl', [function() {
+.controller('mainCtrl', ['$scope', 'api', function($scope, api) {
 
 }]);

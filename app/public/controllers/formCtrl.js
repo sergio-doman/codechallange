@@ -9,7 +9,7 @@ angular.module('myApp.form', ['ngRoute'])
   });
 }])
 
-.controller('formCtrl', ['$scope', '$timeout', 'toastr', function($scope, $timeout, toastr) {
+.controller('formCtrl', ['$scope', '$timeout', 'toastr', 'api', function($scope, $timeout, toastr, api) {
 
   var model = $scope.model = {
 
@@ -30,6 +30,17 @@ angular.module('myApp.form', ['ngRoute'])
       },
 
       data: {},
+
+      getToken: function () {
+        api.getFormToken(function (err, token) {
+          if (err) {
+            toastr.error(err);
+          }
+          else {
+            model.form.token = token;
+          }
+        });
+      },
 
       register: function () {
 
@@ -55,5 +66,6 @@ angular.module('myApp.form', ['ngRoute'])
 
 
   model.form.reset();
+  model.form.getToken();
 
 }]);

@@ -3,6 +3,7 @@
 angular.module('myApp', [
   'ngRoute',
   'toastr',
+  'myApp.api',
   'myApp.main',
   'myApp.form'
 ]).
