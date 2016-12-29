@@ -43,7 +43,7 @@ angular.module('myApp.form', ['ngRoute'])
       },
 
       register: function () {
-
+        // csrf-token
         model.form.progress = true;
         $timeout(function () {
 

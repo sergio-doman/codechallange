@@ -30,6 +30,18 @@ nav ul li a,
   padding-top: 50px;
 }
 
+.form-element {
+  margin: 10px 0px;
+}
+
+.invalid {
+  visibility: hidden;
+}
+.valid {
+  color: #009933;
+  font-weight: 800;
+}
+
 .white {
   color: #fff;
 }

@@ -15,50 +15,75 @@
             </div>
 
             <div ng-if="!model.form.progress">
-              <p>
-                <select class="form-control" ng-model="model.form.data.gender" title="Gender">
-                  <option value="" disabled selected>Gender..</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </p>
+              <form name="regForm">
 
-              <p>
-                <input type="text" ng-model="model.form.data.firstname" class="form-control" placeholder="Firstname.." title="Firstname" required >
-              </p>
+                <div class="input-group form-element">
+                  <span class="input-group-addon" id="sizing-addon1">
+                    <span class="glyphicon glyphicon-ok {{regForm.gender.$valid ? 'valid' : 'invalid'}}"> </span>
+                  </span>
+                  <select class="form-control " name="gender" ng-model="model.form.data.gender" title="Gender" required aria-describedby="sizing-addon1">
+                    <option value="" disabled selected>Gender..</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
 
-              <p>
-                <input type="text" ng-model="model.form.data.lastname" class="form-control" placeholder="Lastname.." title="Lastname" required >
-              </p>
+                <div class="input-group form-element">
+                  <span class="input-group-addon" id="sizing-addon2">
+                    <span class="glyphicon glyphicon-ok {{regForm.firstname.$valid ? 'valid' : 'invalid'}}"> </span>
+                  </span>
+                  <input type="text" name="firstname" ng-model="model.form.data.firstname" class="form-control" placeholder="Firstname.." title="Firstname" required aria-describedby="sizing-addon2">
+                </div>
 
-              <p>
-                <input type="email" ng-model="model.form.data.email" class="form-control" placeholder="Email.." title="Email" required >
-              </p>
+                <div class="input-group form-element">
+                  <span class="input-group-addon" id="sizing-addon3">
+                    <span class="glyphicon glyphicon-ok {{regForm.lastname.$valid ? 'valid' : 'invalid'}}"> </span>
+                  </span>
+                  <input type="text" name="lastname" ng-model="model.form.data.lastname" class="form-control" placeholder="Lastname.." title="Lastname" required aria-describedby="sizing-addon3">
+                </div>
 
-              <p>
-                <input type="text" ng-model="model.form.data.phone" class="form-control" placeholder="Phone.." title="Phone" required >
-              </p>
+                <div class="input-group form-element">
+                  <span class="input-group-addon" id="sizing-addon4">
+                    <span class="glyphicon glyphicon-ok {{regForm.email.$valid ? 'valid' : 'invalid'}}"> </span>
+                  </span>
+                  <input type="email" name="email" ng-model="model.form.data.email" class="form-control" placeholder="Email.." title="Email" required aria-describedby="sizing-addon4">
+                </div>
 
-              <p>
-                <input type="number" ng-model="model.form.data.age" class="form-control" placeholder="Age.." title="Age" min="1" max="99" required >
-              </p>
+                <div class="input-group form-element">
+                  <span class="input-group-addon" id="sizing-addon5">
+                    <span class="glyphicon glyphicon-ok {{regForm.phone.$valid ? 'valid' : 'invalid'}}"> </span>
+                  </span>
+                  <input type="text" name="phone" ng-model="model.form.data.phone" class="form-control" placeholder="Phone.." title="Phone" required aria-describedby="sizing-addon5">
+                </div>
 
-              <p>
-                <input type="number" ng-model="model.form.data.zip" class="form-control" placeholder="Zip.." title="Zip" min="100" max="999" required >
-              </p>
+                <div class="input-group form-element">
+                  <span class="input-group-addon" id="sizing-addon6">
+                    <span class="glyphicon glyphicon-ok {{regForm.age.$valid ? 'valid' : 'invalid'}}"> </span>
+                  </span>
+                  <input type="number" name="age" ng-model="model.form.data.age" class="form-control" placeholder="Age.." title="Age, 1-99" min="1" max="99" required aria-describedby="sizing-addon6">
+                </div>
 
-              <p>
-                <label>
-                  <input type="checkbox" ng-model="model.form.data.termsAccepted">
-                  Accept terms
-                </label>
-              </p>
+                <div class="input-group form-element">
+                  <span class="input-group-addon" id="sizing-addon7">
+                    <span class="glyphicon glyphicon-ok {{regForm.zip.$valid ? 'valid' : 'invalid'}}"> </span>
+                  </span>
+                  <input type="number" name="zip" ng-model="model.form.data.zip" class="form-control" placeholder="Zip.." title="Zip, 3-5 digits" min="100" max="99999" required aria-describedby="sizing-addon7">
+                </div>
 
-              <p>
-                <button class="btn btn-register btn-lg" ng-click="model.form.register();">
-                  Register
-                </button>
-              </p>
+                <div class="form-element">
+                  <label>
+                    <input type="checkbox" name="termsAccepted" ng-model="model.form.data.termsAccepted" required>
+                    Accept terms
+                  </label>
+                </div>
+
+                <div class="form-element">
+                  <button class="btn btn-register btn-lg" ng-click="model.form.register();" ng-disabled="regForm.$invalid">
+                    Register
+                  </button>
+                </div>
+
+              </form>
             </div>
 
           </div>
