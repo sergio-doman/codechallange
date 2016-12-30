@@ -9,7 +9,7 @@ angular.module('myApp.form', ['ngRoute'])
   });
 }])
 
-.controller('formCtrl', ['$scope', '$timeout', 'toastr', 'api', function($scope, $timeout, toastr, api) {
+.controller('formCtrl', ['$scope', '$cookies', '$timeout', 'toastr', 'api', function($scope, $cookies, $timeout, toastr, api) {
 
   var model = $scope.model = {
 
@@ -60,6 +60,8 @@ angular.module('myApp.form', ['ngRoute'])
             }
             else {
               model.form.sent = true;
+              $cookies.put('sent', '1', {expires: new Date(new Date().setFullYear(new Date().getFullYear() + 5))});
+
               model.form.reset();
               toastr.info('Registered');
             }
@@ -71,6 +73,9 @@ angular.module('myApp.form', ['ngRoute'])
       },
 
       reset: function () {
+        model.form.getToken();
+        model.form.sent = $cookies.get('sent');
+
         model.form.data = angular.copy(model.form.dataDefault);
         model.form.termsAccepted = false;
       }
@@ -80,6 +85,5 @@ angular.module('myApp.form', ['ngRoute'])
 
 
   model.form.reset();
-  model.form.getToken();
 
 }]);

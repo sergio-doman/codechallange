@@ -2,6 +2,7 @@
 
 angular.module('myApp', [
   'ngRoute',
+  'ngCookies',
   'toastr',
   'myApp.api',
   'myApp.main',
