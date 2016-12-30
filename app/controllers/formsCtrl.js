@@ -79,17 +79,30 @@ var Controller = function () {
 
         // Insert to DB
         function (cb) {
+          var form = new Form(req.body.form);
 
-          new Form(req.body.form).save(function (err, f) {
-            if (err) {
-              console.log('db err: ', err);
-              cb({code: 500, msg: errorCodes.e4});
-            }
-            else {
-              cb(null, f);
-            }
-          });
+          var validationErrors = form.validateSync();
+          if (validationErrors && validationErrors.errors) {
 
+            var e = [];
+            _(validationErrors.errors).forEach(function (value, key) {
+              e.push(value.message);
+            });
+
+            cb({code: 400, msg: e.join("<br />")});
+          }
+          else {
+
+            form.save(function (err, f) {
+              if (err) {
+                cb({code: 500, msg: errorCodes.e4});
+              }
+              else {
+                cb(null, f);
+              }
+            });
+
+          }
         }
 
       ], function (err, resp) {

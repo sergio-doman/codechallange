@@ -20,7 +20,7 @@ angular.module('myApp.api', [])
     }).then(function successCallback(response) {
       cb(null, response.data);
     }, function errorCallback(response) {
-      cb('Failed to send data');
+      cb(response.data ? response.data : 'Failed to send data');
     });
   }
 
@@ -31,7 +31,7 @@ angular.module('myApp.api', [])
     }).then(function successCallback(response) {
       cb(null, response.data);
     }, function errorCallback(response) {
-      cb('Failed to load token');
+      cb(response.data ? response.data : 'Failed to load token');
     });
   }
 

@@ -42,7 +42,7 @@ var FormSchema = new Schema({
 
   age: {
     type: Number,
-    validate: [function(age) { return /^\d\d$/.test(age) && age > 1 && age < 100; }, 'Please fill a valid email address']
+    validate: [function(age) { return Number(age) == age && age >= 1 && age <= 99; }, 'Please fill a valid age']
   },
 
   zip: {

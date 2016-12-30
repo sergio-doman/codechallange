@@ -56,7 +56,7 @@ angular.module('myApp.form', ['ngRoute'])
 
             model.form.progress = false;
             if (err) {
-              toastr.error(err);
+              toastr.error(err, 'Error');
             }
             else {
               model.form.sent = true;
