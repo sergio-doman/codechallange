@@ -6,7 +6,7 @@ module.exports = function(app, csrfProtection, routesVersioning) {
     "1.0.0": formsCtrl.tokenGenerate
   }));
 
-  app.post('/api/form', /*parseForm,  csrfProtection,*/ routesVersioning({
+  app.post('/api/form', csrfProtection, routesVersioning({
     "1.0.0": formsCtrl.create
   }));
 

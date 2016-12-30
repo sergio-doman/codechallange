@@ -12,6 +12,7 @@ var mongoose = require('mongoose');
 var autoIncrement = require('mongoose-auto-increment');
 
 var config = require('./config');
+var errorCodes = require('./errorCodes');
 
 var csrfProtection = csrf({ cookie: true });
 // var parseForm = bodyParser.urlencoded({ extended: false });
@@ -32,15 +33,7 @@ app.use(session({
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(serveStatic(__dirname + '/public', {'index': ['index.html', 'index.htm']}));
-app.use(function (err, req, res, next) {
-  if (err.code !== 'EBADCSRFTOKEN') {
-    return next(err);
-  }
 
-  // handle CSRF token errors here
-  res.status(403)
-  res.send('form tampered with')
-})
 
 // Mongo
 var mongooseConnect = function() {
@@ -71,6 +64,16 @@ mongoose.connection.on('disconnected', function() {
 
 // Routes
 require('./routes')(app, csrfProtection, routesVersioning);
+
+
+// Handle CSRF token errors here
+app.use(function (err, req, res, next) {
+  if (err.code !== 'EBADCSRFTOKEN') {
+    return next(err);
+  }
+
+  res.status(403).json(errorCodes.e5);
+});
 
 
 // Start

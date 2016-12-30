@@ -77,7 +77,7 @@ var Controller = function () {
           });
         },
 
-        // Insert to DB
+        // Validate && insert to DB
         function (cb) {
           var form = new Form(req.body.form);
 
